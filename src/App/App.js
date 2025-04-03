@@ -29,14 +29,18 @@ function App() {
     })
     setMovies(updatedMovies)
   }
-  
+
   return (
     <main className='App'>
       <header>
         <h1>rancid tomatillos</h1>
       </header> 
 
-      <MoviesContainer movies={movies} /> {/* render this child component passing movies as a prop */}
+      <MoviesContainer // passing movie data and vote handlers down to MoviesContainer
+        movies={movies}  // render this child component passing movies as a prop 
+        onUpVote={handleUpVote}
+        onDownVote={handleDownVote}
+      />
     </main>
   );
 }
