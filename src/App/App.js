@@ -19,6 +19,17 @@ function App() {
     })
     setMovies(updatedMovies)
   }
+
+  function handleDownVote(id) {
+    const updatedMovies = movies.map(movie => {
+      if (movie.id === id) {
+        return { ...movie, votes: movie.votes -1 }
+      }
+      return movie
+    })
+    setMovies(updatedMovies)
+  }
+  
   return (
     <main className='App'>
       <header>
