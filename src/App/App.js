@@ -9,6 +9,16 @@ import MoviesContainer from '../MoviesContainer/MoviesContainer';
 
 function App() {
   const [movies, setMovies] = useState(moviePosters); // hook, lets you update that stateful data, automatically re-renders this component when data changes
+
+  function handleUpVote(id) {
+    const updatedMovies = movies.map(movie => {
+      if (movie.id === id) {
+        return { ...movie, votes: movie.votes +1 }
+      }
+      return movie 
+    })
+    setMovies(updatedMovies)
+  }
   return (
     <main className='App'>
       <header>
