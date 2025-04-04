@@ -1,10 +1,15 @@
 import './MoviePoster.css';
+import React from 'react';
 
-function MoviePoster() {
+function MoviePoster({ movie }) {
   return (
-    <section className='MoviePoster'>
-      <p>This is a movie poster.</p>
-    </section>
+    <div className="movie-card">
+      <img 
+        src={movie.poster_path.replace(/\/\//, '/')} 
+        alt={movie.title} 
+      />
+      <p className="vote-count">Votes: {movie.vote_count}</p>
+    </div>
   );
 }
 

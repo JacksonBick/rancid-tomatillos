@@ -6,8 +6,10 @@ import { useState, useEffect } from 'react';
 import moviePosters from '../data/movie_posters';
 import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import MoviePoster from '../MoviePoster/MoviePoster';
 
 function App() {
+
   return (
     <main className='App'>
       <header>
@@ -15,14 +17,8 @@ function App() {
       </header>
 
       <div className="movie-container">
-        {moviePosters.map((movie) => (
-          <div key={movie.id} className="movie-card">
-            <img 
-              src={movie.poster_path.replace(/\/\//, '/')} 
-              alt={movie.title} 
-            />
-            <p className="vote-count">Votes: {movie.vote_count}</p> 
-          </div>
+      {moviePosters.map((movie) => (
+          <MoviePoster key={movie.id} movie={movie} />
         ))}
       </div>
     </main>
