@@ -1,48 +1,47 @@
 import './App.css';
 import searchIcon from '../icons/search.png';
-
-// Example imports (for later):
-import { useState, useEffect } from 'react'; // "Hey React, track this data and re-render if it changes"
+import { useState, useEffect } from 'react';
 import moviePosters from '../data/movie_posters';
 import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import MoviePoster from '../MoviePoster/MoviePoster'; 
 
 function App() {
   const [movies, setMovies] = useState(
     moviePosters.map(movie => ({
       ...movie,
-      votes:movie.vote_count
+      votes: movie.vote_count
     }))
-  )
+  );
 
   function handleUpVote(id) {
     const updatedMovies = movies.map(movie => {
       if (movie.id === id) {
-        return { ...movie, votes: movie.votes +1 }
+        return { ...movie, votes: movie.votes + 1 };
       }
-      return movie 
-    })
-    setMovies(updatedMovies)
+      return movie;
+    });
+    setMovies(updatedMovies);
   }
 
   function handleDownVote(id) {
     const updatedMovies = movies.map(movie => {
       if (movie.id === id) {
-        return { ...movie, votes: movie.votes -1 }
+        return { ...movie, votes: movie.votes - 1 };
       }
-      return movie
-    })
-    setMovies(updatedMovies)
+      return movie;
+    });
+    setMovies(updatedMovies);
   }
 
   return (
     <main className='App'>
       <header>
         <h1>rancid tomatillos</h1>
-      </header> 
+      </header>
 
-      <MoviesContainer // passing movie data and vote handlers down to MoviesContainer
-        movies={movies}  // render this child component passing movies as a prop 
+      <MoviesContainer 
+        movies={movies}  
         onUpVote={handleUpVote}
         onDownVote={handleDownVote}
       />
