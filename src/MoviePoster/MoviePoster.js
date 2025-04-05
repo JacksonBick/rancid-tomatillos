@@ -3,10 +3,9 @@ import React from 'react';
 
 function MoviePoster({ movie }) {
   return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={onClick}>
       <img 
         src={movie.poster_path.replace(/\/\//, '/')} 
-        alt={movie.title} 
       />
       <p className="vote-count">Votes: {movie.vote_count}</p>
     </div>

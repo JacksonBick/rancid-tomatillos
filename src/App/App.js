@@ -7,8 +7,19 @@ import moviePosters from '../data/movie_posters';
 import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MoviePoster from '../MoviePoster/MoviePoster';
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 function App() {
+
+  const [selectedMovie, useSelectedMovie] = useState(null);
+
+  const handleMovieClick = (movie) => {
+    useSelectedMovie(movie);  
+  };
+
+  const handleBackToList = () => {
+    useSelectedMovie(null);  
+  };
 
   return (
     <main className='App'>
@@ -16,11 +27,19 @@ function App() {
         <h1>rancid tomatillos</h1>
       </header>
 
-      <div className="movie-container">
-      {moviePosters.map((movie) => (
-          <MoviePoster key={movie.id} movie={movie} />
-        ))}
-      </div>
+      {selectedMovie ? (
+        <MovieDetails movieDetails={movieDetails} onBackClick={handleBackToList} />
+      ) : (
+        <div className="movie-container">
+          {moviePosters.map((movie) => (
+            <MoviePoster 
+              key={movie.id} 
+              movie={movie} 
+              onClick={() => handleMovieClick(movie)}  
+            />
+          ))}
+        </div>
+      )}
     </main>
   );
 }
