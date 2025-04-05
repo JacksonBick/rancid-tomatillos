@@ -3,7 +3,7 @@ import MoviePoster from '../MoviePoster/MoviePoster';
 
 function MoviesContainer({ movies, onUpVote, onDownVote }) {
   return (
-      <section className='MoviesContainer'>
+      <section className="movie-container">
         {movies.map(movie => (
           <MoviePoster
             key={movie.id}
