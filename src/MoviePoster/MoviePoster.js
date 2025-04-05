@@ -1,7 +1,7 @@
 import './MoviePoster.css';
 import React from 'react';
 
-function MoviePoster({ movie }) {
+function MoviePoster({ movie, onClick }) {
   return (
     <div className="movie-card" onClick={onClick}>
       <img 

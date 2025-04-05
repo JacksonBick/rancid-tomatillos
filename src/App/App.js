@@ -11,14 +11,14 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 
 function App() {
 
-  const [selectedMovie, useSelectedMovie] = useState(null);
+  const [selectedMovie, UseSelectedMovie] = useState(null);
 
   const handleMovieClick = (movie) => {
-    useSelectedMovie(movie);  
+    UseSelectedMovie(movie);  
   };
 
   const handleBackToList = () => {
-    useSelectedMovie(null);  
+    UseSelectedMovie(null);  
   };
 
   return (
