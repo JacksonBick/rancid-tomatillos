@@ -11,7 +11,7 @@ function MoviePoster({ movie, onUpVote, onDownVote }) {
 
       <div className="vote-banner">
         <button onClick={() =>onUpVote(movie.id)}>⬆️</button>
-        <p className="vote-count">Votes: {movie.votes}</p>
+        <p className="vote-count">Votes: {movie.vote_count}</p>
         <button onClick={() =>onDownVote(movie.id)}>⬇️</button>
       </div>
     </div>
