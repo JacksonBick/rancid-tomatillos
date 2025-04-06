@@ -21,6 +21,11 @@
     width: 60px; 
     height: 60px; 
   }
+
+  .back-button img:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
   
   
   .movie-details-container {
