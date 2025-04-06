@@ -38,14 +38,14 @@ function App() {
     setMovies(updatedMovies);
   }
 
-  const [selectedMovie, UseSelectedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleMovieClick = (movie) => {
-    UseSelectedMovie(movie);  
+    setSelectedMovie(movie);  
   };
 
   const handleBackToList = () => {
-    UseSelectedMovie(null);  
+    setSelectedMovie(null);  
   };
 
   return (
@@ -53,28 +53,21 @@ function App() {
       <header>
         <h1>rancid tomatillos</h1>
       </header>
-
-
+  
       {selectedMovie ? (
-        <MovieDetails movieDetails={movieDetails} onBackClick={handleBackToList} />
+        <MovieDetails 
+          movieDetails={movieDetails} 
+          onBackClick={handleBackToList} 
+        />
       ) : (
-        <div className="movie-container">
-          {moviePosters.map((movie) => (
-            <MoviePoster 
-              key={movie.id} 
-              movie={movie} 
-              onClick={() => handleMovieClick(movie)}  
-            />
-          ))}
-        </div>
+        <MoviesContainer 
+          movies={movies}  
+          onUpVote={handleUpVote}
+          onDownVote={handleDownVote}
+          onPosterClick={handleMovieClick}
+        />
       )}
-      <MoviesContainer 
-        movies={movies}  
-        onUpVote={handleUpVote}
-        onDownVote={handleDownVote}
-      />
-    </main>
-  );
-}
-
+    </main>  
+  ); 
+}       
 export default App;
