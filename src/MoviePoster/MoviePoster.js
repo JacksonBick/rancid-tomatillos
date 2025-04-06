@@ -2,17 +2,18 @@ import './MoviePoster.css';
 import React from 'react';
 
 
-function MoviePoster({ movie, onUpVote, onDownVote, onClick }) {
+function MoviePoster({ movie, onUpVote, onDownVote, onPosterClick }) {
   return (
-    <div className="movie-card" onClick={onClick}>
+    <div className="movie-card" onClick={() => onPosterClick(movie)}>  
       <img 
         src={movie.poster_path.replace(/\/\//, '/')} 
+        alt={movie.title}
       />
 
       <div className="vote-banner">
-        <button onClick={() => onUpVote(movie.id)}>▲</button>
+        <button onClick={(e) => { e.stopPropagation(); onUpVote(movie.id); }}>▲</button>
         <p className="vote-count">Votes: {movie.votes}</p>
-        <button onClick={() => onDownVote(movie.id)}>▼</button>
+        <button onClick={(e) => { e.stopPropagation(); onDownVote(movie.id); }}>▼</button>
       </div>
     </div>
   );

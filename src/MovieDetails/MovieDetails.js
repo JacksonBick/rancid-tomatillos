@@ -1,4 +1,5 @@
 import './MovieDetails.css';
+import homeIcon from '../icons/home.png';
 
 
 function MovieDetails({ movieDetails, onBackClick }) {
@@ -6,7 +7,7 @@ function MovieDetails({ movieDetails, onBackClick }) {
     <section className='MovieDetails'>
       {/* Back button with image */}
       <button onClick={onBackClick} className="back-button">
-        <img src="./icons/home.png" alt="Back to Movies" />
+        <img src={homeIcon} alt="Back to Movies" />
       </button>
       
       <div className="movie-details-container">

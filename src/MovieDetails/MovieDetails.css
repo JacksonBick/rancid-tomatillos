@@ -1,24 +1,30 @@
 .MovieDetails {
     text-align: center;
     color: white;
-    padding: 40px;
+    padding: 25px;
     position: relative; 
   }
   
   
-  button.back-button {
+  .back-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px; 
   }
   
   button.back-button img {
-    width: 30px; 
-    height: 30px; 
+    width: 60px; 
+    height: 60px; 
+  }
+
+  .back-button img:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
   }
   
   
@@ -45,7 +51,6 @@
   .movie-info p strong {
     font-weight: bold;
   }
-  
   
   .movie-backdrop {
     width: 100%;
