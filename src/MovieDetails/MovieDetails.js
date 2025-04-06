@@ -1,9 +1,14 @@
 import './MovieDetails.css';
 
+
 function MovieDetails({ movieDetails, onBackClick }) {
   return (
     <section className='MovieDetails'>
-      <button onClick={onBackClick} className="back-button">Back to Movies</button>
+      {/* Back button with image */}
+      <button onClick={onBackClick} className="back-button">
+        <img src="./icons/home.png" alt="Back to Movies" />
+      </button>
+      
       <div className="movie-details-container">
         <img 
           src={movieDetails.backdrop_path.replace(/\/\//, '/')}
