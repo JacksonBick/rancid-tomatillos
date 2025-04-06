@@ -1,12 +1,12 @@
 import './MoviePoster.css';
 import React from 'react';
 
-function MoviePoster({ movie, onUpVote, onDownVote }) {
+
+function MoviePoster({ movie, onUpVote, onDownVote, onClick }) {
   return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={onClick}>
       <img 
         src={movie.poster_path.replace(/\/\//, '/')} 
-        alt={movie.title} 
       />
 
       <div className="vote-banner">
