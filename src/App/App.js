@@ -8,15 +8,21 @@ import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import MovieDetails from '../MovieDetails/MovieDetails';
 
+const API_URL = "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies";
 
 
 function App() {
-  const [movies, setMovies] = useState(
-    moviePosters.map(movie => ({
-      ...movie,
-      votes: movie.vote_count
-    }))
-  );
+  const [movies, setMovies] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(response => response.json()) 
+      .then(data => {
+        setMovies(data)
+        setLoading(false)
+      })
+  }, [])
 
   function handleUpVote(id) {
     const updatedMovies = movies.map(movie => {
