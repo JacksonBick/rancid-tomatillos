@@ -6,7 +6,7 @@ function MoviePoster({ movie, onUpVote, onDownVote, onPosterClick }) {
   return (
     <div className="movie-card" onClick={() => onPosterClick(movie)}>  
       <img 
-        src={movie.poster_path.replace(/\/\//, '/')} 
+        src={movie.poster_path}
         alt={movie.title}
       />
 

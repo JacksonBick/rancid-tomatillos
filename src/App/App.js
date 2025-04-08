@@ -17,12 +17,35 @@ function App() {
 
   useEffect(() => {
     fetch(API_URL)
-      .then(response => response.json()) 
+      .then(response => response.json())
       .then(data => {
-        setMovies(data)
-        setLoading(false)
+        const moviesWithVotes = data.map(movie => ({
+          ...movie,
+          votes: movie.vote_count 
+        }));
+        setMovies(moviesWithVotes);
+        setLoading(false);
       })
-  }, [])
+      .catch(error => console.error('Error fetching movies:', error));
+  }, []);
+
+  function updateVote(id, direction) {
+    fetch(`${API_URL}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ vote_direction: direction })
+    })
+      .then(response => response.json())
+      .then(updatedMovie => {
+        setMovies(prevMovies => prevMovies.map(movie =>
+          movie.id === id ? { ...movie, votes: updatedMovie.vote_count } : movie
+        ));
+      })
+      .catch(error => console.error('Error updating vote:', error));
+  }
+  
 
   const fetchMovieDetails = (id) => {
     setMovieLoading(true)
@@ -36,23 +59,11 @@ function App() {
 
 
   function handleUpVote(id) {
-    const updatedMovies = movies.map(movie => {
-      if (movie.id === id) {
-        return { ...movie, votes: movie.votes + 1 };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
+    updateVote(id, 'up');
   }
-
+  
   function handleDownVote(id) {
-    const updatedMovies = movies.map(movie => {
-      if (movie.id === id) {
-        return { ...movie, votes: movie.votes - 1 };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
+    updateVote(id, 'down');
   }
 
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -74,7 +85,7 @@ function App() {
   
       {selectedMovie ? (
         <MovieDetails 
-          movieDetails={movieDetails} 
+          movieDetails={selectedMovie} 
           onBackClick={handleBackToList} 
         />
       ) : (
