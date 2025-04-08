@@ -2,8 +2,6 @@ import './App.css';
 import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png';
 import { useState, useEffect } from 'react';
-import moviePosters from '../data/movie_posters';
-import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import MovieDetails from '../MovieDetails/MovieDetails';
@@ -14,6 +12,8 @@ const API_URL = "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1
 function App() {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
+  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieLoading, setMovieLoading] = useState(false);
 
   useEffect(() => {
     fetch(API_URL)
@@ -23,6 +23,17 @@ function App() {
         setLoading(false)
       })
   }, [])
+
+  const fetchMovieDetails = (id) => {
+    setMovieLoading(true)
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setMovieDetails(data)
+        setMovieLoading(false)
+      })
+  };
+
 
   function handleUpVote(id) {
     const updatedMovies = movies.map(movie => {
@@ -47,7 +58,8 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleMovieClick = (movie) => {
-    setSelectedMovie(movie);  
+    setSelectedMovie(movie)
+    fetchMovieDetails(movie.id)
   };
 
   const handleBackToList = () => {

@@ -3,6 +3,10 @@ import homeIcon from '../icons/home.png';
 
 
 function MovieDetails({ movieDetails, onBackClick }) {
+  if (!movieDetails) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <section className='MovieDetails'>
       {/* Back button with image */}
@@ -12,7 +16,7 @@ function MovieDetails({ movieDetails, onBackClick }) {
       
       <div className="movie-details-container">
         <img 
-          src={movieDetails.backdrop_path.replace(/\/\//, '/')}
+          src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
           alt={movieDetails.title}
           className="movie-backdrop"
         />
