@@ -17,7 +17,6 @@ function App() {
     fetch(API_URL)
       .then(response => response.json())
       .then(data => {
-        console.log("Fetched data:", data);
         const moviesWithVotes = data.map(movie => ({
           ...movie,
           votes: movie.vote_count 
@@ -36,12 +35,7 @@ function App() {
       },
       body: JSON.stringify({ vote_direction: direction })
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to update vote');
-        }
-        return response.json();
-      })
+      .then(response => response.json())
       .then(updatedMovie => {
         setMovies(prevMovies => prevMovies.map(movie =>
           movie.id === id ? { ...movie, votes: updatedMovie.vote_count } : movie
