@@ -25,24 +25,60 @@ function App() {
   }, [])
 
   function handleUpVote(id) {
-    const updatedMovies = movies.map(movie => {
-      if (movie.id === id) {
-        return { ...movie, votes: movie.votes + 1 };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
+    fetch(`${API_URL}/${id}`,{
+      method: "PATCH", 
+      headers: { 
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ vote_direction: "up" })
+    })
+    .then(response => response.json())
+    .then(updatedMovie => {
+      const updatedMovies = movies.map(movie =>
+        movie.id === updatedMovie.id ? updatedMovie : movie
+      );
+      setMovies(updatedMovies);
+    })
+    .catch(error => console.error("Vote update failed:", error));
   }
 
   function handleDownVote(id) {
-    const updatedMovies = movies.map(movie => {
-      if (movie.id === id) {
-        return { ...movie, votes: movie.votes - 1 };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
+    fetch(`${API_URL}/${id}`,{
+      method: "PATCH", 
+      headers: { 
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ vote_direction: "down" })
+    })
+    .then(response => response.json())
+    .then(updatedMovie => {
+      const updatedMovies = movies.map(movie =>
+        movie.id === updatedMovie.id ? updatedMovie : movie
+      );
+      setMovies(updatedMovies);
+    })
+    .catch(error => console.error("Vote update failed:", error));
   }
+
+  // function handleUpVote(id) {
+  //   const updatedMovies = movies.map(movie => {
+  //     if (movie.id === id) {
+  //       return { ...movie, votes: movie.votes + 1 };
+  //     }
+  //     return movie;
+  //   });
+  //   setMovies(updatedMovies);
+  // }
+
+  // function handleDownVote(id) {
+  //   const updatedMovies = movies.map(movie => {
+  //     if (movie.id === id) {
+  //       return { ...movie, votes: movie.votes - 1 };
+  //     }
+  //     return movie;
+  //   });
+  //   setMovies(updatedMovies);
+  // }
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
