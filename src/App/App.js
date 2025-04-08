@@ -12,6 +12,8 @@ const API_URL = "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1
 function App() {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
+  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieLoading, setMovieLoading] = useState(false);
 
   useEffect(() => {
     fetch(API_URL)
@@ -44,6 +46,18 @@ function App() {
       .catch(error => console.error('Error updating vote:', error));
   }
   
+
+  const fetchMovieDetails = (id) => {
+    setMovieLoading(true)
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setMovieDetails(data)
+        setMovieLoading(false)
+      })
+  };
+
+
   function handleUpVote(id) {
     updateVote(id, 'up');
   }
@@ -55,7 +69,8 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleMovieClick = (movie) => {
-    setSelectedMovie(movie);  
+    setSelectedMovie(movie)
+    fetchMovieDetails(movie.id)
   };
 
   const handleBackToList = () => {
