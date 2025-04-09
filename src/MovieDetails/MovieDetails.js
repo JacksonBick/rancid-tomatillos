@@ -7,6 +7,7 @@ function MovieDetails({ movieDetails, onBackClick }) {
     return <div>Loading...</div>;
   }
 
+  
   return (
     <section className='MovieDetails'>
       {/* Back button with image */}

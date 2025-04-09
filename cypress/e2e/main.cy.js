@@ -9,4 +9,5 @@ describe('Main Page', () => {
     .get('h1')
     .contains('rancid tomatillos')
   })
+
 })
