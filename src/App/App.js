@@ -85,7 +85,7 @@ function App() {
   
       {selectedMovie ? (
         <MovieDetails 
-          movieDetails={selectedMovie} 
+          movieDetails={movieDetails} 
           onBackClick={handleBackToList} 
         />
       ) : (
