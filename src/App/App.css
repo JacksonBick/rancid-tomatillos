@@ -26,3 +26,10 @@ p {
   margin-top: 50px;
   color: white;
 }
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
