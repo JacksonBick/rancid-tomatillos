@@ -72,3 +72,17 @@ describe('Voting Functionality', () => {
   });
 });
 
+describe('Sad Path - API Failure', () => {
+  it('should display an error message if the movies fail to load', () => {
+    cy.intercept("GET", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies", {
+      statusCode: 500
+    }).as("getMoviesError");
+
+    cy.visit("http://localhost:3000/");
+
+    cy.wait("@getMoviesError");
+
+    cy.get(".error-message").should("exist")
+      .and("contain", "Sorry, we’re having trouble loading movies. Please try again later.");
+  });
+});
