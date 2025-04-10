@@ -92,7 +92,7 @@ function App() {
       <header>
         <h1>rancid tomatillos</h1>
       </header>
-      {error && <p className="error-message">{error}</p>} #conditional
+      {error && <p className="error-message">{error}</p>} 
   
       {selectedMovie ? (
         <MovieDetails 
