@@ -17,7 +17,6 @@ describe('Main Page', () => {
     .contains('rancid tomatillos')
   })
 
-})
   it('displays a grid of movie posters on load', () => {
     cy.get('.movie-container').should('exist')
     cy.get('.movie-card').should('have.length', 4)
