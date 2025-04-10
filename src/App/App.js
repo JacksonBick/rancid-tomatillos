@@ -14,10 +14,16 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [movieDetails, setMovieDetails] = useState(null);
   const [movieLoading, setMovieLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetch(API_URL)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch movies');
+        }
+        return response.json();
+      })
       .then(data => {
         const moviesWithVotes = data.map(movie => ({
           ...movie,
@@ -26,7 +32,11 @@ function App() {
         setMovies(moviesWithVotes);
         setLoading(false);
       })
-      .catch(error => console.error('Error fetching movies:', error));
+      .catch(error => {
+        console.error('Error fetching movies:', error);
+        setError('Sorry, we’re having trouble loading movies. Please try again later.');
+        setLoading(false);
+      });
   }, []);
 
   function updateVote(id, direction) {
@@ -82,6 +92,7 @@ function App() {
       <header>
         <h1>rancid tomatillos</h1>
       </header>
+      {error && <p className="error-message">{error}</p>} 
   
       {selectedMovie ? (
         <MovieDetails 
