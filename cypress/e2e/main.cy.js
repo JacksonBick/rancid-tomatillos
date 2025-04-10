@@ -16,6 +16,8 @@ describe('Main Page', () => {
     cy.get('h1')
     .contains('rancid tomatillos')
   })
+
+})
   it('displays a grid of movie posters on load', () => {
     cy.get('.movie-container').should('exist')
     cy.get('.movie-card').should('have.length', 4)
@@ -70,3 +72,4 @@ describe('Voting Functionality', () => {
     cy.get('.movie-card').first().find('.vote-count').should('have.text', 'Votes: 32545');
   });
 });
+
