@@ -14,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [movieDetails, setMovieDetails] = useState(null);
   const [movieLoading, setMovieLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetch(API_URL)
