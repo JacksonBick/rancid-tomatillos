@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import MovieDetails from '../MovieDetails/MovieDetails';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 const API_URL = "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies";
 
@@ -94,19 +95,32 @@ function App() {
       </header>
       {error && <p className="error-message">{error}</p>} 
   
-      {selectedMovie ? (
-        <MovieDetails 
-          movieDetails={movieDetails} 
-          onBackClick={handleBackToList} 
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <MoviesContainer 
+              movies={movies}
+              onUpVote={handleUpVote}
+              onDownVote={handleDownVote}
+              onPosterClick={handleMovieClick}
+            />
+          } 
         />
-      ) : (
-        <MoviesContainer 
-          movies={movies}  
-          onUpVote={handleUpVote}
-          onDownVote={handleDownVote}
-          onPosterClick={handleMovieClick}
+        <Route 
+          path="/:movieId" 
+          element={
+            <MovieDetails 
+              movieDetails={movieDetails}
+              onBackClick={handleBackToList}
+            />
+          } 
         />
-      )}
+        <Route 
+          path="*" 
+          element={<p className="error-message">Page not found</p>} 
+        />
+      </Routes>
     </main>  
   ); 
 }       
