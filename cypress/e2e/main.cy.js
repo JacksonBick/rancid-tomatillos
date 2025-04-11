@@ -14,8 +14,9 @@ describe("Main Page", () => {
     cy.visit("http://localhost:3000/")
   })
 
-  it("displays title on page load", () => {
-    cy.get("h1").contains("rancid tomatillos")
+  it('displays title on page load', () => {
+    cy.get('h1')
+    .contains('Rancid Tomatillos')
   })
 
   it("displays a grid of movie posters on load", () => {

@@ -1,14 +1,11 @@
-import "./App.css";
-import searchIcon from "../icons/search.png";
-import homeIcon from "../icons/home.png";
-import { useState, useEffect } from "react";
-import MoviesContainer from "../MoviesContainer/MoviesContainer";
-import MoviePoster from "../MoviePoster/MoviePoster";
-import MovieDetails from "../MovieDetails/MovieDetails";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-const API_URL =
-  "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies";
+import './App.css';
+import { useState, useEffect } from 'react';
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import MovieDetails from '../MovieDetails/MovieDetails';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+const API_URL = "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -74,7 +71,7 @@ function App() {
   return (
     <main className="App">
       <header>
-        <h1>rancid tomatillos</h1>
+        <h1>Rancid Tomatillos</h1>
       </header>
       {error && <p className="error-message">{error}</p>}
 
