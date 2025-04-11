@@ -12,7 +12,9 @@
 .movie-card:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
 }
 
@@ -43,7 +45,7 @@
 }
 
 .vote-count {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 18px;
   color: #3e49b1;
   text-align: center;

@@ -1,66 +1,64 @@
 .MovieDetails {
-    text-align: center;
-    color: white;
-    padding: 25px;
-    position: relative; 
-  }
-  
-  
-  .back-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button.back-button img {
-    width: 40px; 
-    height: 40px; 
-  }
+  text-align: center;
+  color: white;
+  padding: 25px;
+  position: relative;
+}
 
-  .back-button img:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
-  }
-  
-  
-  .movie-details-container {
-    padding: 20px;
-    background-color: white; 
-    color: black; 
-    text-align: left;
-    border-radius:20px 20px; 
-  }
-  
-  .movie-info h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .movie-info p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    color: black;
-  }
-  
-  .movie-info p strong {
-    font-weight: bold;
-  }
-  
-  .movie-backdrop {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .movie-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
+.back-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button.back-button img {
+  width: 40px;
+  height: 40px;
+}
+
+.back-button img:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.movie-details-container {
+  padding: 20px;
+  background-color: white;
+  color: black;
+  text-align: left;
+  border-radius: 20px 20px;
+}
+
+.movie-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.movie-info p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.movie-info p strong {
+  font-weight: bold;
+}
+
+.movie-backdrop {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
