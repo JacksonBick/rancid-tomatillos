@@ -1,19 +1,18 @@
 import './MoviePoster.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
-function MoviePoster({ movie, onUpVote, onDownVote, onPosterClick }) {
+function MoviePoster({ movie, onUpVote, onDownVote }) {
   return (
-    <div className="movie-card" onClick={() => onPosterClick(movie)}>  
-      <img 
-        src={movie.poster_path}
-        alt={movie.title}
-      />
-
+    <div className="movie-card">
+      <Link to={`/${movie.id}`}>
+        <img src={movie.poster_path} alt={movie.title} />
+      </Link>
       <div className="vote-banner">
-        <button onClick={(e) => { e.stopPropagation(); onUpVote(movie.id); }}>▲</button>
+        <button onClick={() => onUpVote(movie.id)}>▲</button>
         <p className="vote-count">Votes: {movie.votes}</p>
-        <button onClick={(e) => { e.stopPropagation(); onDownVote(movie.id); }}>▼</button>
+        <button onClick={() => onDownVote(movie.id)}>▼</button>
       </div>
     </div>
   );
