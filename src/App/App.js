@@ -13,9 +13,9 @@ const API_URL = "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1
 function App() {
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-  const [movieDetails, setMovieDetails] = useState(null);
-  const [movieLoading, setMovieLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [movieDetails, setMovieDetails] = useState(null)
+  const [movieLoading, setMovieLoading] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     fetch(API_URL)
@@ -29,7 +29,7 @@ function App() {
         const moviesWithVotes = data.map(movie => ({
           ...movie,
           votes: movie.vote_count 
-        }));
+        }))
         setMovies(moviesWithVotes);
         setLoading(false);
       })
@@ -37,8 +37,8 @@ function App() {
         console.error('Error fetching movies:', error);
         setError('Sorry, we’re having trouble loading movies. Please try again later.');
         setLoading(false);
-      });
-  }, []);
+      })
+  }, [])
 
   function updateVote(id, direction) {
     fetch(`${API_URL}/${id}`, {
@@ -52,7 +52,7 @@ function App() {
       .then(updatedMovie => {
         setMovies(prevMovies => prevMovies.map(movie =>
           movie.id === id ? { ...movie, votes: updatedMovie.vote_count } : movie
-        ));
+        ))
       })
       .catch(error => console.error('Error updating vote:', error));
   }
@@ -66,27 +66,20 @@ function App() {
         setMovieDetails(data)
         setMovieLoading(false)
       })
-  };
+  }
 
 
   function handleUpVote(id) {
-    updateVote(id, 'up');
+    updateVote(id, 'up')
   }
   
   function handleDownVote(id) {
-    updateVote(id, 'down');
+    updateVote(id, 'down')
   }
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
-  const handleMovieClick = (movie) => {
-    setSelectedMovie(movie)
-    fetchMovieDetails(movie.id)
-  };
-
-  const handleBackToList = () => {
-    setSelectedMovie(null);  
-  };
+  if (loading) {
+    return <p className="loading-message">Loading movies...</p>
+  }
 
   return (
     <main className='App'>
@@ -94,7 +87,7 @@ function App() {
         <h1>rancid tomatillos</h1>
       </header>
       {error && <p className="error-message">{error}</p>} 
-  
+
       <Routes>
         <Route 
           path="/" 
@@ -103,22 +96,16 @@ function App() {
               movies={movies}
               onUpVote={handleUpVote}
               onDownVote={handleDownVote}
-              onPosterClick={handleMovieClick}
             />
           } 
         />
         <Route 
           path="/:movieId" 
-          element={
-            <MovieDetails 
-              movieDetails={movieDetails}
-              onBackClick={handleBackToList}
-            />
-          } 
+          element={<MovieDetails/>} 
         />
         <Route 
           path="*" 
-          element={<p className="error-message">Page not found</p>} 
+          element={<p className="error-message">Oops! This page doesn't exist</p>} 
         />
       </Routes>
     </main>  
