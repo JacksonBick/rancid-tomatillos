@@ -1,6 +1,4 @@
-// Mock data to use for testing:
 import posters from '../fixtures/movie_posters.json' 
-// import details from '../fixtures/movie_details.json' (you will need to add your own mock data to this file!)
 
 describe('Main Page', () => {
   beforeEach(() => { 
@@ -16,7 +14,7 @@ describe('Main Page', () => {
     cy.get('h1')
     .contains('rancid tomatillos')
   })
-
+  
   it('displays a grid of movie posters on load', () => {
     cy.get('.movie-container').should('exist')
     cy.get('.movie-card').should('have.length', 4)
