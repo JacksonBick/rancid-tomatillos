@@ -1,25 +1,22 @@
 .MovieDetails {
-    text-align: center;
-    color: white;
-    padding: 25px;
-    position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  color: white;
+  padding: 25px;
   }
   
   
   .back-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    padding: 0;
+    margin-bottom: 10px;
     background: none;
     border: none;
     cursor: pointer;
   }
   
-  button.back-button img {
-    width: 40px; 
-    height: 40px; 
+  .back-button img {
+    width: 50px; 
+    height: 50px; 
   }
 
   .back-button img:hover {
@@ -37,12 +34,12 @@
   }
   
   .movie-info h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 10px;
   }
   
   .movie-info p {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     line-height: 1.6;
     margin-bottom: 10px;
     color: black;

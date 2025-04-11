@@ -12,7 +12,7 @@ describe('Main Page', () => {
 
   it('displays title on page load', () => {
     cy.get('h1')
-    .contains('rancid tomatillos')
+    .contains('Rancid Tomatillos')
   })
   
   it('displays a grid of movie posters on load', () => {
@@ -37,26 +37,24 @@ describe('Main Page', () => {
 
 describe('Voting Functionality', () => {
   beforeEach(() => {
-    // Intercept the GET request to return fixture data
     cy.intercept("GET", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies", {
       statusCode: 200,
       fixture: "movie_posters"
     }).as("getMovies");
 
-    // Intercept PATCH request to simulate a successful upvote
     cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
       statusCode: 200,
       body: {
         id: 155,
         poster_path: "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
         title: "The Dark Knight",
-        vote_count: 32545 // new updated count
+        vote_count: 32545 
       }
     }).as("patchVote");
 
     cy.visit("http://localhost:3000/");
 
-    cy.wait("@getMovies"); // make sure movies are loaded first
+    cy.wait("@getMovies"); 
   });
 
   it("sends a PATCH request and updates vote count when upvoted", () => {

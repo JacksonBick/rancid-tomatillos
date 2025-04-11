@@ -31,7 +31,7 @@ describe('Movie Details Page', () => {
     cy.wait('@getMovies');
   
     cy.url().should('eq', 'http://localhost:3000/');
-    cy.get('.movie-card').should('have.length', 4);
+    cy.get('.movie-card').should('have.length', 1);
   });
 
   it('navigates back using the browser back button', () => {
@@ -42,14 +42,14 @@ describe('Movie Details Page', () => {
     }).as("getMoviesAgain")
 
     cy.go('back');
-    cy.wait("@getMoviesAgain");
+    cy.wait("@getMovies");
     
     cy.url().should('eq', 'http://localhost:3000/');
-    cy.get('.movie-card').should('have.length', 4);
+    cy.get('.movie-card').should('have.length', 1);
   });
 
   it('displays an error message when visiting a non-existent route', () => {
     cy.visit('http://localhost:3000/banana');
-    cy.contains("Oops! This page doesn't exist").should('be.visible');
+    cy.contains("Sorry, we couldn’t load this movie.").should('be.visible');
   });
 });

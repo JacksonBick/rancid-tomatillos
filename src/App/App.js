@@ -1,9 +1,6 @@
 import './App.css';
-import searchIcon from '../icons/search.png';
-import homeIcon from '../icons/home.png';
 import { useState, useEffect } from 'react';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
-import MoviePoster from '../MoviePoster/MoviePoster';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
@@ -56,18 +53,6 @@ function App() {
       })
       .catch(error => console.error('Error updating vote:', error));
   }
-  
-
-  const fetchMovieDetails = (id) => {
-    setMovieLoading(true)
-    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        setMovieDetails(data)
-        setMovieLoading(false)
-      })
-  }
-
 
   function handleUpVote(id) {
     updateVote(id, 'up')
@@ -84,7 +69,7 @@ function App() {
   return (
     <main className='App'>
       <header>
-        <h1>rancid tomatillos</h1>
+        <h1>Rancid Tomatillos</h1>
       </header>
       {error && <p className="error-message">{error}</p>} 
 
