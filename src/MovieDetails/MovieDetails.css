@@ -1,4 +1,5 @@
 .MovieDetails {
+
   display: flex;
   flex-direction: column;
   align-items: flex-end; 
@@ -61,3 +62,4 @@
     gap: 20px;
     padding: 20px;
   }
+

@@ -1,7 +1,6 @@
-import './MoviePoster.css';
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import "./MoviePoster.css";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function MoviePoster({ movie, onUpVote, onDownVote }) {
   return (
@@ -15,7 +14,7 @@ function MoviePoster({ movie, onUpVote, onDownVote }) {
         <button onClick={() => onDownVote(movie.id)}>▼</button>
       </div>
     </div>
-  );
+  )
 }
 
 export default MoviePoster;

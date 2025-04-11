@@ -1,84 +1,118 @@
-import posters from '../fixtures/movie_posters.json' 
+import posters from "../fixtures/movie_posters.json";
 
-describe('Main Page', () => {
-  beforeEach(() => { 
-    cy.intercept("GET", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies", {
-      statusCode: 200, 
-      fixture: "movie_posters"
-    })
+describe("Main Page", () => {
+  beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
+      {
+        statusCode: 200,
+        fixture: "movie_posters",
+      },
+    )
 
-    cy.visit('http://localhost:3000/')
+    cy.visit("http://localhost:3000/")
   })
 
   it('displays title on page load', () => {
     cy.get('h1')
     .contains('Rancid Tomatillos')
   })
-  
-  it('displays a grid of movie posters on load', () => {
-    cy.get('.movie-container').should('exist')
-    cy.get('.movie-card').should('have.length', 4)
+
+  it("displays a grid of movie posters on load", () => {
+    cy.get(".movie-container").should("exist")
+    cy.get(".movie-card").should("have.length", 4)
   })
-  it('contains movie posters with an img, vote banner and buttons', () => {
-    cy.get('.movie-card').first().find('.vote-banner').should('exist')
-    cy.get('.movie-card').first().find('img').should('exist')
-    cy.get('.movie-card').first().find('.vote-count').contains('Votes:')
-    cy.get('.movie-card').first().find('.vote-count').should('have.text', 'Votes: 32544')
-    cy.get('.movie-card').first().find('button').contains('▲')
-    cy.get('.movie-card').first().find('button').contains('▼')
-    cy.get('.movie-card').last().find('.vote-banner').should('exist')
-    cy.get('.movie-card').last().find('img').should('exist')
-    cy.get('.movie-card').last().find('.vote-count').contains('Votes:')
-    cy.get('.movie-card').last().find('.vote-count').should('have.text', 'Votes: 27642')
-    cy.get('.movie-card').last().find('button').contains('▲')
-    cy.get('.movie-card').last().find('button').contains('▼')
+  it("contains movie posters with an img, vote banner and buttons", () => {
+    cy.get(".movie-card").first().find(".vote-banner").should("exist")
+    cy.get(".movie-card").first().find("img").should("exist")
+    cy.get(".movie-card").first().find(".vote-count").contains("Votes:")
+    cy.get(".movie-card")
+      .first()
+      .find(".vote-count")
+      .should("have.text", "Votes: 32544")
+    cy.get(".movie-card").first().find("button").contains("▲")
+    cy.get(".movie-card").first().find("button").contains("▼")
+    cy.get(".movie-card").last().find(".vote-banner").should("exist")
+    cy.get(".movie-card").last().find("img").should("exist")
+    cy.get(".movie-card").last().find(".vote-count").contains("Votes:")
+    cy.get(".movie-card")
+      .last()
+      .find(".vote-count")
+      .should("have.text", "Votes: 27642")
+    cy.get(".movie-card").last().find("button").contains("▲")
+    cy.get(".movie-card").last().find("button").contains("▼")
   })
 })
 
-describe('Voting Functionality', () => {
+describe("Voting Functionality", () => {
   beforeEach(() => {
-    cy.intercept("GET", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies", {
-      statusCode: 200,
-      fixture: "movie_posters"
-    }).as("getMovies");
+    // intercept the GET request to return fixture data
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
+      {
+        statusCode: 200,
+        fixture: "movie_posters",
+      },
+    ).as("getMovies")
 
-    cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
-      statusCode: 200,
-      body: {
-        id: 155,
-        poster_path: "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-        title: "The Dark Knight",
-        vote_count: 32545 
-      }
-    }).as("patchVote");
+    // intercept PATCH request to simulate a successful upvote
+    cy.intercept(
+      "PATCH",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
+      {
+        statusCode: 200,
+        body: {
+          id: 155,
+          poster_path:
+            "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+          title: "The Dark Knight",
+          vote_count: 32545, // new updated count
+        },
+      },
+    ).as("patchVote")
 
-    cy.visit("http://localhost:3000/");
+    cy.visit("http://localhost:3000/")
 
-    cy.wait("@getMovies"); 
-  });
+    cy.wait("@getMovies") // make sure movies are loaded first
+  })
 
   it("sends a PATCH request and updates vote count when upvoted", () => {
-    
-    cy.get('.movie-card').first().find('.vote-count').should('have.text', 'Votes: 32544');
-    cy.get('.movie-card').first().find('button').contains('▲').click();
+    cy.get(".movie-card")
+      .first()
+      .find(".vote-count")
+      .should("have.text", "Votes: 32544")
+    cy.get(".movie-card").first().find("button").contains("▲").click()
 
-    cy.wait("@patchVote");
+    cy.wait("@patchVote")
 
-    cy.get('.movie-card').first().find('.vote-count').should('have.text', 'Votes: 32545');
-  });
-});
+    cy.get(".movie-card")
+      .first()
+      .find(".vote-count")
+      .should("have.text", "Votes: 32545")
+  })
+})
 
-describe('Sad Path - API Failure', () => {
-  it('should display an error message if the movies fail to load', () => {
-    cy.intercept("GET", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies", {
-      statusCode: 500
-    }).as("getMoviesError");
+describe("Sad Path - API Failure", () => {
+  it("should display an error message if the movies fail to load", () => {
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
+      {
+        statusCode: 500,
+      },
+    ).as("getMoviesError")
 
-    cy.visit("http://localhost:3000/");
+    cy.visit("http://localhost:3000/")
 
-    cy.wait("@getMoviesError");
+    cy.wait("@getMoviesError")
 
-    cy.get(".error-message").should("exist")
-      .and("contain", "Sorry, we’re having trouble loading movies. Please try again later.");
-  });
-});
+    cy.get(".error-message")
+      .should("exist")
+      .and(
+        "contain",
+        "Sorry, we’re having trouble loading movies. Please try again later.",
+      )
+  })
+})
