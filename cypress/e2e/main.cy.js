@@ -1,6 +1,4 @@
-// Mock data to use for testing:
 import posters from '../fixtures/movie_posters.json' 
-// import details from '../fixtures/movie_details.json' (you will need to add your own mock data to this file!)
 
 describe('Main Page', () => {
   beforeEach(() => { 
