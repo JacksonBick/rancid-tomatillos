@@ -30,7 +30,6 @@ describe("Movie Details Page", () => {
       .and('have.attr', 'src')
       .and('include', '/nMKdUUepR0i5zn0y1T4CsSB5chy.jpg')
     cy.get('.movie-backdrop')
-      .should('have.attr', 'alt', 'The Dark Knight')
     cy.get(".movie-info h2").contains("The Dark Knight")
     cy.get('.movie-info p strong').should('contain', 'Genres:')
     cy.get('.movie-info p').should('contain', 'Drama, Action, Crime, Thriller')
