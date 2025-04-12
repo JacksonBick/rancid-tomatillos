@@ -96,7 +96,6 @@ function App() {
           element={
             <p className="error-message">Oops! This page doesn't exist</p>
           }
-          // This fallback route isn't hit currently due to dynamic /:movieId matching
         />
       </Routes>
     </main>

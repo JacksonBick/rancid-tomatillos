@@ -36,14 +36,14 @@ function MovieDetails() {
 
   return (
     <section className="MovieDetails">
-      <Link to="/" className="back-button">
+      <Link to="/" className="back-button" aria-label="Go back to movie posters">
         <img src={homeIcon} alt="Back to Movies" />
       </Link>
 
       <div className="movie-details-container">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-          alt={movie.title}
+          alt={`image for ${movie.title}`}
           className="movie-backdrop"
         />
         <div className="movie-info">
