@@ -1,7 +1,7 @@
 # Rancid Tomatillos 🎥🍅
 
 ## Overview
-Rancid Tomatillos is a movie rating app built with React that allows users to browse movie posters, view detailed movie information, and upvote or downvote films. All votes persist across page reloads thanks to PATCH requests sent to a live external API. Users can navigate directly to individual movie pages and gracefully handle loading states or incorrect URLs.
+Rancid Tomatillos is a movie rating app built with React that allows users to browse movie posters, view detailed movie information, and upvote or downvote films. All votes persist across page reloads thanks to PATCH requests sent to a live external API. Users can navigate directly to individual movie pages thanks to the Router component, and the app can handle loading states or incorrect URLs via client-side errors.
 
 This project was built to demonstrate mastery of React fundamentals, component architecture, routing, testing with Cypress, and async API integration.
 
@@ -15,6 +15,7 @@ This project was built to demonstrate mastery of React fundamentals, component a
 - Cypress (for E2E testing)
 - Vite (for dev server)
 - External REST API (Heroku)
+- Render (for deployment)
 
 ---
 
@@ -32,14 +33,19 @@ This project was built to demonstrate mastery of React fundamentals, component a
 
 ### 💥 Challenges:
 - Debugging vote persistence through PATCH requests
-- Managing state updates and unmounting with React Router
-- Keeping Cypress tests consistent through page reloads
+- Managing state updates and unmounting with React Router refactoring
+- Keeping Cypress tests consistent through page reloads!
 
 ### 🏆 Wins:
 - Removed unnecessary prop drilling after refactor with Routes
 - Implemented semantic error handling and loading UI
 - Created DRY, modular code with clean component responsibilities
-- Practiced full end-to-end testing with mocked network responses
+- Practiced full end-to-end testing with mocked network responses and consistent fixture data
+
+### 🤔 Reflections: 
+- We're curious to keep exploring the advantages and disadvantages between a 'SPA' and a true 'multi-page App'. At what point does the complexity or scale of an app constitute true multi-page functionality versus simulating with a Router component?
+- Learning Cypress had some growing pains, but the browser interface is so comprehensive, and in general, framing tests around a 'user-story' makes so much sense in the context of integration tests. This is definitely one of the benefits of frontend development, framing the flow of the code around the user experience.  
+-If we were to scale this app up, we could add a an encrypted login page, profile building, search function, favoriting, and smart suggestions based on movies you have liked, or up-voted. It would be a great exercise to build on our Component Architecture Diagram, to see how it would change as we scaled this application up. Perhaps as it grows we could implement React's Context feature to share data globally across components, to help us avoid prop drilling.  
 
 ---
 
@@ -70,10 +76,3 @@ This project was built to demonstrate mastery of React fundamentals, component a
 [GitHub](https://github.com/JacksonBick)  
   
 ---
-
-## 📚 To Run Locally
-```bash
-git clone https://github.com/YourGitHubName/rancid-tomatillos.git
-cd rancid-tomatillos
-npm install
-npm run dev
