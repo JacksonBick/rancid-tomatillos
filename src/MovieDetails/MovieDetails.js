@@ -24,14 +24,14 @@ function MovieDetails() {
         setLoading(false)
       })
       .catch((err) => {
-        setError("Sorry, we couldn’t load this movie.");
+        setError("Sorry, we couldn’t load this movie.")
         setLoading(false)
       });
   }, [movieId])
 
   if (loading)
-    return <p className="loading-message">Loading movie details...</p>;
-  if (error) return <p className="error-message">{error}</p>;
+    return <p className="loading-message">Loading movie details...</p>
+  if (error) return <p className="error-message">{error}</p>
   if (!movie) return null
 
   return (
@@ -49,7 +49,7 @@ function MovieDetails() {
         <div className="movie-info">
           <h2>{movie.title}</h2>
           <p>
-            <strong>Genres:</strong> {movie.genre_ids.join(", ")}
+            <strong>Genres:</strong>{' '}{movie.genre_ids.join(", ")}
           </p>
           <p>
             <strong>Overview:</strong> {movie.overview}
@@ -60,7 +60,7 @@ function MovieDetails() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 export default MovieDetails;

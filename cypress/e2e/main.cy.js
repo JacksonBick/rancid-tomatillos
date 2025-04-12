@@ -47,7 +47,6 @@ describe("Main Page", () => {
 
 describe("Voting Functionality", () => {
   beforeEach(() => {
-    // intercept the GET request to return fixture data
     cy.intercept(
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
@@ -57,7 +56,6 @@ describe("Voting Functionality", () => {
       },
     ).as("getMovies")
 
-    // intercept PATCH request to simulate a successful upvote
     cy.intercept(
       "PATCH",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
@@ -68,14 +66,14 @@ describe("Voting Functionality", () => {
           poster_path:
             "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
           title: "The Dark Knight",
-          vote_count: 32545, // new updated count
+          vote_count: 32545, 
         },
       },
     ).as("patchVote")
 
     cy.visit("http://localhost:3000/")
 
-    cy.wait("@getMovies") // make sure movies are loaded first
+    cy.wait("@getMovies") 
   })
 
   it("sends a PATCH request and updates vote count when upvoted", () => {
