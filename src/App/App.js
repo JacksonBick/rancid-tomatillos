@@ -26,18 +26,18 @@ function App() {
         const moviesWithVotes = data.map((movie) => ({
           ...movie,
           votes: movie.vote_count,
-        }));
+        }))
         setMovies(moviesWithVotes);
         setLoading(false)
       })
       .catch((error) => {
-        console.error("Error fetching movies:", error);
+        console.error("Error fetching movies:", error)
         setError(
           "Sorry, we’re having trouble loading movies. Please try again later.",
-        );
+        )
         setLoading(false)
-      });
-  }, []);
+      })
+  }, [])
 
   function updateVote(id, direction) {
     fetch(`${API_URL}/${id}`, {
@@ -55,9 +55,9 @@ function App() {
               ? { ...movie, votes: updatedMovie.vote_count }
               : movie,
           ),
-        );
+        )
       })
-      .catch((error) => console.error("Error updating vote:", error));
+      .catch((error) => console.error("Error updating vote:", error))
   }
 
   function handleUpVote(id) {
@@ -96,7 +96,6 @@ function App() {
           element={
             <p className="error-message">Oops! This page doesn't exist</p>
           }
-          // This fallback route isn't hit currently due to dynamic /:movieId matching
         />
       </Routes>
     </main>

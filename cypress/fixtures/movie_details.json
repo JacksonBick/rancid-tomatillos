@@ -1,12 +1,11 @@
-[
   {
     "id": 155,
     "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
     "title": "The Dark Knight",
     "vote_count": 32544,
-    "backdrop_path": "/path/to/backdrop.jpg",
-    "genre_ids": ["Action", "Crime", "Drama"],
+    "backdrop_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original//nMKdUUepR0i5zn0y1T4CsSB5chy.jpg",
+    "genre_ids": ["Drama", "Action", "Crime", "Thriller"],
     "overview": "When the menace known as The Joker emerges from his mysterious past...",
     "release_date": "2008-07-18"
   }
-]
+
