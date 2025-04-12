@@ -29,12 +29,42 @@ This project was built to demonstrate mastery of React fundamentals, component a
 
 ---
 
+## 👾 Code Snippets
+
+- **1. VOTING FUNCTIONALITY** 
+
+  We’re proud of how we abstracted our vote logic into a single dynamic helper function, updateVote, which handles both upvotes and downvotes by accepting a direction argument—this avoids repetition, keeps our code DRY, and cleanly separates       functionality from event handlers.
+
+![Screenshot 2025-04-12 at 11 09 36 AM](https://github.com/user-attachments/assets/c6803c38-418c-4ce1-8604-2d524db906af)
+
+
+
+- **2. CYPRESS TESTING CHALLENGE**
+  
+ This test is a great example of how many moving parts an integration test can have. It was challenging to get right because we had to carefully match our assertions to the exact structure of the rendered DOM—including nested elements like       
+ <strong> tags that interrupted the text flow—ensure our fixture data aligned with what the component expected, and correctly intercept asynchronous network requests, all while simulating real user interactions.
+
+![Screenshot 2025-04-12 at 12 36 44 PM](https://github.com/user-attachments/assets/ad2fdd9f-8331-426c-99ff-6443e2772f77)
+
+
+
+- **3. STATE MANAGEMENT**
+
+  This refactor modularizes our code by allowing the MovieDetails component to manage its own state and handle its own data fetching using useParams, rather than relying on prop drilling from the parent App component. This improves   
+  scalability, keeps concerns separated, and takes full advantage of React Router’s dynamic routing.
+
+![Screenshot 2025-04-12 at 12 44 19 PM](https://github.com/user-attachments/assets/5492c600-60d0-4699-ae65-ac174b85c871)
+
+
+---
+
+
 ## 💡 Challenges + Wins
 
 ### 💥 Challenges:
 - Debugging vote persistence through PATCH requests
 - Managing state updates and unmounting with React Router refactoring
-- Keeping Cypress tests consistent through page reloads!
+- Keeping Cypress tests consistent through page reloads, fixture data AND the rendered DOM!
 
 ### 🏆 Wins:
 - Removed unnecessary prop drilling after refactor with Routes
